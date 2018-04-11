@@ -17,4 +17,16 @@ https://arxiv.org/pdf/1410.3916.pdf
 
 ### A MEMNN Implentation For Text
 ##### Basic Model
-
+most important procedure:$O$ and $R$
+* $k=1$ select the highest scoring support memory
+$o_1=O_1(x,\boldsymbol{m})=\mathop{\arg\max}\limits_{i=1,...,N}$  $s_O(x,\boldsymbol{m}_i)$
+* $k=2$ use the context input <br>
+$o_2=O_2(x,\boldsymbol{m})=\mathop{\arg\max}\limits_{i=1,...,N}$  $s_O([x,\boldsymbol{m}_{o1}],\boldsymbol{m}_i)$
+* For R procedure <br>
+* $r = \mathop{\arg\max_{w\in W}} s_R([x,\boldsymbol{m}_{o1},\boldsymbol{m}_{o2}],w)$ <br>
+ $W$ is the set of all words in the dictionary<br>
+ $s_R$ is the scoring function that scores the match <br>
+* Scoring  function $sO$ and $sR$ have the same form <br> $s(x,y)=\Phi_x(x)^\mathrm{T}U^\mathrm{T}U\Phi_y(y)$ <br> $U$ is a $ n{\times}D$ maxtrix, $D$ is the number of features,$n$ is the embedding dimension <br>
+$\Phi_x$ and $\Phi_y$ is to map the original text to $D$-dimensional feature space,
+* training <br>
+loss function: margin ranking loss like hinge loss
