@@ -25,3 +25,16 @@ gated attention-based recurrent networks <br>
 $g_t=sigmoid(W_g[u^P_t,c_t])$ <br>
 $[u^P_t,c_t]^*=g_t\bigodot[u^P_t,c_t]$ <br>
 The gate effectively model the phenomenon that only parts of the passage are relevant to the question in reading comprehension and question answering.
+##### Self-Matching Attention
+Dynamically collects evidence from the whole passage for words in passage and encodes the evidence relevant to the current passage word and its matching question information into the passage representation $h^P_t$ <br>
+$h^P_t = BiRNN(h^P_{t-1},[v^P_t,c_t])$ <br>
+where $c_t=att(v^P,v^P_t)$ is an attention-pooling vector of the whole passage($v^P$)  <br>
+gated attention-based reccurrent network
+$g_t=sigmoid(W_g[v^P_t,c_t])$ <br>
+$[v^P_t,c_t]^*=g_t\bigodot[v^P_t,c_t]$ <br>
+Self-matching extracts evidence from the whole passage according to the current passage word and
+question information.
+##### Output Layer
+
+minimize the sum of the negative log probabilities of the ground truth start
+and end position by the predicted distributions
